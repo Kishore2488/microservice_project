@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -f kishorevusa/productcatalogservice:latest .'
+                script{
+                    withDockerRegistry(credentialsId: 'docker_creds') {
+                        sh 'docker build -f kishorevusa/productcatalogservice:latest .'
+                    }
+                }
             }
         }
         stage("Push"){
@@ -12,6 +16,7 @@ pipeline {
                 script{
                     withDockerRegistry(credentialsId: 'docker_creds') {
                         sh 'docker push kishorevusa/productcatalogservice:latest'
+                    }
                 }
             }
         }
