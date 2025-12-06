@@ -11,7 +11,7 @@ pipeline {
             steps{
                 script{
                     withDockerRegistry(credentialsId: 'docker_creds') {
-                        sh 'docker build -t kishorevusa/frontend:latest .'
+                        sh 'docker push kishorevusa/frontend:latest .'
                 }
             }
         }
