@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'kishorevusa/productcatalogservice:latest .'
+                sh 'docker build -f kishorevusa/productcatalogservice:latest .'
             }
         }
         stage("Push"){
