@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker_creds') {
-                        sh 'docker build -f kishorevusa/productcatalogservice:latest .'
+                        sh 'docker build -t kishorevusa/productcatalogservice:latest .'
                     }
                 }
             }
