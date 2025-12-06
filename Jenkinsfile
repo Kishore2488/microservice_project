@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script{
+                script {
                     withDockerRegistry(credentialsId: 'docker_creds') {
                         sh 'docker build -t kishorevusa/cartservice:latest .'
                     }
