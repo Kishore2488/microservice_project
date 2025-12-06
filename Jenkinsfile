@@ -6,7 +6,9 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker_creds') {
-                        sh 'docker build -t kishorevusa/cartservice:latest .'
+                        dir('cartservice') {
+                            sh 'docker build -t kishorevusa/cartservice:latest .'
+                        }
                     }
                 }
             }
