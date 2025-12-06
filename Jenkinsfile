@@ -4,14 +4,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t kishorevusa/shippingservice:latest .'
+                script{
+                    withDockerRegistry(credentialsId: 'docker_creds') {
+                        sh 'docker build -t kishorevusa/shippingservice:latest .'
+                    }
+                }
             }
         }
         stage("Push"){
             steps{
                 script{
                     withDockerRegistry(credentialsId: 'docker_creds') {
-                        sh 'docker push kishorevusa/shippingservice:latest .'
+                        sh 'docker push kishorevusa/shippingservice:latest'
+                    }
                 }
             }
         }
