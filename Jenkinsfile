@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker_creds') {
+                        dir('cartservice') { 
                             sh 'docker build -t kishorevusa/cartservice:latest .'
                         }
                     }
