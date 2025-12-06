@@ -5,11 +5,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    dir('src') {
                     withDockerRegistry(credentialsId: 'docker_creds') {
-                        dir('cartservice') { 
                             sh 'docker build -t kishorevusa/cartservice:latest .'
-                        }
                     }
+                        }
                 }
             }
         }
