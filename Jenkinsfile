@@ -4,14 +4,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t kishorevusa/frontend:latest .'
+                script{
+                    withDockerRegistry(credentialsId: 'docker_creds') {
+                        sh 'docker build -t kishorevusa/frontend:latest .'
+                    }
+                }
             }
         }
         stage("Push"){
             steps{
                 script{
                     withDockerRegistry(credentialsId: 'docker_creds') {
-                        sh 'docker push kishorevusa/frontend:latest .'
+                        sh 'docker push kishorevusa/frontend:latest'
+                    }
                 }
             }
         }
